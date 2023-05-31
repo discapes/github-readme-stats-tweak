@@ -65,6 +65,26 @@
 
 <p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!</p>
 
+### Discape's fork:
+
+- Added extra field to the top languages endpoint, to sort and pick custom repositories
+```
+field = 
+CREATED_AT - Order repositories by creation time.
+NAME - Order repositories by name.
+PUSHED_AT - Order repositories by push time.
+STARGAZERS - Order repositories by number of stargazers.
+UPDATED_AT - Order repositories by update time. (default)
+
+direction = 
+DESC - Descending (default)
+ASC - Ascending 
+
+first = number of repos to get (default 100)
+```
+
+## Original README continuing ...
+
 <a href="https://indiafightscorona.giveindia.org">
   <img src="https://cfstatic.give.do/logo.png" alt="Give india logo" width="200" />
 </a>
