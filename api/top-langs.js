@@ -53,7 +53,7 @@ export default async (req, res) => {
       parseArray(exclude_repo),
       field,
       direction,
-      first,
+      +first,
       size_weight,
       count_weight,
     );
