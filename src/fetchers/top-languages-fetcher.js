@@ -19,10 +19,9 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $order: RepositoryOrder, $first: Int) {
         user(login: $login) {
-          # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          repositories(ownerAffiliations: OWNER, isFork: false, first: $first, orderBy: $order) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -57,12 +56,15 @@ const fetcher = (variables, token) => {
 const fetchTopLanguages = async (
   username,
   exclude_repo = [],
+  field = "UPDATED_AT",
+  direction = "DESC",
+  first = 100,
   size_weight = 1,
   count_weight = 0,
 ) => {
   if (!username) throw new MissingParamError(["username"]);
 
-  const res = await retryer(fetcher, { login: username });
+  const res = await retryer(fetcher, { login: username, order: { field, direction }, first });
 
   if (res.data.errors) {
     logger.error(res.data.errors);
