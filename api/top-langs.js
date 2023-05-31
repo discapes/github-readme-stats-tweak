@@ -27,6 +27,9 @@ export default async (req, res) => {
     exclude_repo,
     size_weight,
     count_weight,
+    first,
+    field,
+    direction,
     custom_title,
     locale,
     border_radius,
@@ -48,6 +51,9 @@ export default async (req, res) => {
     const topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
+      field,
+      direction,
+      first,
       size_weight,
       count_weight,
     );
